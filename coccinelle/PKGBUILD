@@ -1,0 +1,43 @@
+# Maintainer: Sylvain Henry <hsyl20@gmail.com>
+# Contributor: Sylvain Henry <hsyl20@gmail.com>
+# Contributor: Marti Raudsepp <marti@juffo.org>
+# Contributor: Dan McGee <dpmcgee@gmail.com>
+# Contributor: LeCrayonVert <sunrider@laposte.net>
+# Contributor: Lukas Fleischer <archlinux@cryptocrack.de>
+# Contributor: Vladimir Kirillov <proger@wilab.org.ua>
+
+
+pkgname=coccinelle
+_pkgver=1.0.0-rc9
+pkgver=1.0.0rc9
+pkgrel=1
+pkgdesc="Provides spatch program used to apply semantic patches"
+arch=('i686' 'x86_64')
+url="http://coccinelle.lip6.fr"
+license=('GPL2')
+makedepends=('ocaml')
+depends=('ocaml-findlib')
+options=(!strip)
+source=(
+  http://coccinelle.lip6.fr/distrib/${pkgname}-${_pkgver}.tgz
+  configure.patch
+  Makefile.patch
+  Makefile.in.patch
+)
+
+build() {
+   cd "$srcdir/$pkgname-$_pkgver"
+
+   patch configure $srcdir/configure.patch
+   patch pycaml/Makefile $srcdir/Makefile.patch
+   patch pycaml/Makefile.in $srcdir/Makefile.in.patch
+   ./configure --prefix=/usr
+   make depend 
+   make 
+   make DESTDIR=$pkgdir MANDIR="/usr/share/man" install 
+}
+
+sha256sums=('75d5354e76500b627ccc33b8a929305e5a815ebf08027a8dc094f75ece241697'
+            '5d67236872995834ec4ee23a3396d7bfd0a651c7a489631be45f7da924a3e9fb'
+            'e99732a771683ad11e7ac8a7c28ef9839975bc6e595a6ecfa4ceae8c543d37cb'
+            'b627062ec0fda7b05599440126c29023aeb25857ce2478180c4d8b070bba2537')

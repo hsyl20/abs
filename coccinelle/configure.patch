@@ -1,0 +1,11 @@
+265,274d264
+< 	my $python_hdr = "$PY_PREFIX/include/python$PY_VERSION/Python.h";
+< 	if(check_config(
+< 	    "ls $python_hdr 2> /dev/null | ",
+< 	    $python_hdr,
+< 	    "Python.h found",
+< 	    "Python.h missing - You need to install python-dev"
+< 	    ))
+< 	{
+< 	    $python=0
+< 	}

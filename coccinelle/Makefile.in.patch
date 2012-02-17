@@ -1,0 +1,14 @@
+14,15c14
+< 	-cclib -L$(PY_PREFIX)/lib/python$(PY_VERSION)/config \
+< 	-cclib -lpython$(PY_VERSION) $(SYSLIBS) \
+---
+> 	-cclib $(shell pkg-config --libs python -$(PY_VERSION))$(SYSLIBS) \
+25c24
+< 	-ccopt -I$(PY_PREFIX)/include/python$(PY_VERSION) $<
+---
+> 	-ccopt $(shell pkg-config --cflags python -$(PY_VERSION)) $<
+40c39
+< 	rm -rf config.cache autom4te.cache config.status Makefile
+\ Pas de fin de ligne à la fin du fichier
+---
+> 	rm -rf config.cache autom4te.cache config.status Makefile

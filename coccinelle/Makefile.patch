@@ -1,0 +1,11 @@
+13c13,17
+< CFLAGS = -fPIC
+---
+> CFLAGS = -fPIC $(shell pkg-config --cflags python-$(PY_VERSION))
+> LDFLAGS = $(shell pkg-config --libs python-$(PY_VERSION))
+> 
+> #$(PY_PREFIX)/lib/python$(PY_VERSION)/config
+> 
+18,19d21
+< LIBDIRS = $(PY_PREFIX)/lib/python$(PY_VERSION)/config
+< INCDIRS = $(PY_PREFIX)/include/python$(PY_VERSION)
