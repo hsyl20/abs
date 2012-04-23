@@ -1,0 +1,3 @@
+post_remove() {
+   echo "Don't forget that downloaded videos still are in ~/.cpvod"
+}
